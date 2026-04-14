@@ -1,0 +1,48 @@
+package car_class;
+
+class Cars {
+    private String brand;
+    private String color;
+    private int speed;
+    private final int MAX_SPEED = 200;
+
+    public Cars(String brand, String color, int speed) {
+        this.brand = brand;
+        this.color = color;
+
+        if (speed >= 0) {
+            this.speed = speed;
+        } else {
+            System.out.println("Speed cannot be negative!");
+            this.speed = 0;
+        }
+    }
+
+    public void accelerate(int increment) {
+        if (increment > 0) {
+            if (speed + increment <= MAX_SPEED) {
+                speed += increment;
+                System.out.println(brand + " accelerated to " + speed + " km/h");
+            } else {
+                speed = MAX_SPEED;
+                System.out.println(brand + " reached top speed of " + MAX_SPEED + " km/h");
+            }
+        } else {
+            System.out.println("Invalid acceleration amount!");
+        }
+    }
+
+    // Getter for speed
+    public int getSpeed() {
+        return speed;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cars myCar = new Cars("M3 GTR", "Silver with blue strip", 100);
+        myCar.accelerate(10);   // M3 GTR accelerated to 110 km/h
+        myCar.accelerate(200);  // M3 GTR reached top speed of 200 km/h
+        myCar.accelerate(-5);   // Invalid acceleration amount!
+    }
+}
